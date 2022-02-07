@@ -1,5 +1,6 @@
 package com.mob.casestudy.digitalbanking.entities;
 
+import com.mob.casestudy.digitalbanking.dto.CustomerDto;
 import com.mob.casestudy.digitalbanking.entities.enumrator.Language;
 import com.mob.casestudy.digitalbanking.entities.enumrator.UserStatus;
 import lombok.*;
@@ -50,14 +51,16 @@ public class Customer {
     private String updatedBy;
     private LocalDateTime updatedOn;
 
-    @OneToMany(mappedBy = "customer")
+    @OneToMany(mappedBy = "customer",cascade= CascadeType.REMOVE)
     private List<CustomerSecurityQuestions> customerSecurityQuestions = new ArrayList<>();
 
-    @OneToOne(mappedBy = "customer")
+    @OneToOne(mappedBy = "customer",cascade= CascadeType.REMOVE)
     private CustomerSecurityImages customerSecurityImages;
 
-    @OneToOne(mappedBy = "customer")
+    @OneToOne(mappedBy = "customer",cascade= CascadeType.REMOVE)
     private CustomerOtp customerOtp;
 
-
+    public CustomerDto toDto() {
+        return CustomerDto.builder().id(id.toString()).userName(userName).firstName(firstName).lastName(lastName).phoneNumber(phoneNumber).email(email).status(status.toString()).preferredLanguages(preferredLanguages.toString()).build();
+    }
 }

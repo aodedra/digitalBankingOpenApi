@@ -4,8 +4,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class CustomerSecurityImageNotFound extends RuntimeException {
-    public CustomerSecurityImageNotFound(String message) {
+public class ProvidedCustomerNotFoundException extends RuntimeException {
+    public ProvidedCustomerNotFoundException(String message) {
         super(message);
     }
 }

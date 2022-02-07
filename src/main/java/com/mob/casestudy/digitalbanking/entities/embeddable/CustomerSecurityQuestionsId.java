@@ -25,12 +25,10 @@ public class CustomerSecurityQuestionsId implements Serializable {
         return securityQuestionId;
     }
 
-
     @Override
     public String toString() {
         return "CustomerSecurityQuestionsId{" +
                 "customerId='" + customerId + '\'' +
                 ", securityQuestionId='" + securityQuestionId + '\'' + '}';
     }
-
 }

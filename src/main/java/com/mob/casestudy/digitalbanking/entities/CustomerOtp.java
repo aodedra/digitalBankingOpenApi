@@ -3,10 +3,7 @@ package com.mob.casestudy.digitalbanking.entities;
 import com.mob.casestudy.digitalbanking.entities.embeddable.CustomerOtpId;
 import lombok.*;
 
-import javax.persistence.EmbeddedId;
-import javax.persistence.Entity;
-import javax.persistence.MapsId;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
@@ -25,8 +22,7 @@ public class CustomerOtp {
     private Integer otpRetries;
     private LocalDateTime expiryOn;
     private LocalDateTime createdOn;
-    @OneToOne
+    @OneToOne(cascade= CascadeType.REMOVE)
     @MapsId("customerId")
     private Customer customer;
-
 }

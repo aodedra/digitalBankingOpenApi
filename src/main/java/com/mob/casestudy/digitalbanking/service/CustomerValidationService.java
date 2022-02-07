@@ -5,33 +5,24 @@ import com.mob.casestudy.digitalbanking.entities.CustomerSecurityImages;
 import com.mob.casestudy.digitalbanking.exception.CustomerSecurityImageNotFound;
 import com.mob.casestudy.digitalbanking.exception.UserNotFoundException;
 import com.mob.casestudy.digitalbanking.repository.CustomerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-
+import java.util.Objects;
 @Component
-public class ValidationService {
+public class CustomerValidationService {
     private final CustomerRepository customerRepository;
-
-    public ValidationService(CustomerRepository customerRepository) {
+    @Autowired
+    public CustomerValidationService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
 
-    public Customer validateUser(String userName) {
-
-        Customer customer = customerRepository.findByUserName(userName);
-
-        if (!customerRepository.existsByUserName(userName)) {
-            throw new UserNotFoundException("The Requested User Not Found");
-        }
-        return customer;
+    public Customer validateCustomer(String userName) {
+       return customerRepository.findByUserName(userName).orElseThrow(()->new UserNotFoundException("The Requested User Not Found"));
     }
 
-    public void validateImages(CustomerSecurityImages customerSecurityImages) {
-
-        if (customerSecurityImages==null) {
+    public void validateCustomerSecurityImages(CustomerSecurityImages customerSecurityImages) {
+        if (Objects.isNull(customerSecurityImages)) {
             throw new CustomerSecurityImageNotFound("The Requested User Security Image Not Found");
         }
-
-
     }
 }

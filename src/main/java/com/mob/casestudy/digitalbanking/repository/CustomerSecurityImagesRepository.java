@@ -5,10 +5,7 @@ import com.mob.casestudy.digitalbanking.entities.embeddable.CustomerSecurityImag
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import javax.transaction.Transactional;
-
 @Repository
-@Transactional
-public interface CustomerSecurityImagesRepository extends JpaRepository<CustomerSecurityImages, CustomerSecurityImagesId> {
 
+public interface CustomerSecurityImagesRepository extends JpaRepository<CustomerSecurityImages, CustomerSecurityImagesId> {
 }

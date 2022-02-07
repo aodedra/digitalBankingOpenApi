@@ -21,7 +21,7 @@ public class CustomerSecurityImages {
     private String securityImageCaption;
     private LocalDateTime createdOn;
 
-    @OneToOne
+    @OneToOne(cascade= CascadeType.REMOVE)
     @MapsId("customerId")
     private Customer customer;
 
@@ -32,6 +32,4 @@ public class CustomerSecurityImages {
     public CustomerSecurityImagesDto toDto() {
         return new CustomerSecurityImagesDto(customerSecurityImagesId.getSecurityImageId().toString(), securityImages.getSecurityImageName(), securityImageCaption, securityImages.getSecurityImageUrl());
     }
-
-
 }

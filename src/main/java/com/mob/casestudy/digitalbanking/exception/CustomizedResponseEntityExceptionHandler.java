@@ -29,7 +29,11 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
         ExceptionResource exceptionResponse = new ExceptionResource("OTP-VAL-FIE-001", "The Requested Customer Not Found");
         return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
     }
-
+    @ExceptionHandler(CustomersNotFoundException.class)
+    public final ResponseEntity<Object> handleCustomersNotFoundException() {
+        ExceptionResource exceptionResponse = new ExceptionResource("CUS-DELETE-NFD-001", "The Requested Customer Not Found");
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
+    }
     @ExceptionHandler(OtpInvalidException.class)
     public final ResponseEntity<Object> handleInvalidOtp() {
         ExceptionResource exceptionResponse = new ExceptionResource("OTP-VAL-FIE-003", "Entered Otp is Invalid");
@@ -44,7 +48,7 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 
     @ExceptionHandler(OtpFailedAttemptsException.class)
     public final ResponseEntity<Object> handleFailedOtpAttempts() {
-        ExceptionResource exceptionResponse = new ExceptionResource("OTP-VAL-FIE-004", "The Requested User Otp Attempt not acceptable more than 3 times");
+        ExceptionResource exceptionResponse = new ExceptionResource("OTP-VAL-FIE-004", "The Requested User Otp Attempt not acceptable more than 2 times");
         return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
     }
 
@@ -53,5 +57,14 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
         ExceptionResource exceptionResponse = new ExceptionResource("OTP-VAL-FIE-005", "Entered Otp is Expired");
         return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
     }
-
+    @ExceptionHandler(UserNameAndIdNullException.class)
+    public final ResponseEntity<Object> handleUserNameAndIdNull() {
+        ExceptionResource exceptionResponse = new ExceptionResource("CUS-GET-FIE-001", "Mandatory Fields Not be null");
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
+    }
+    @ExceptionHandler(ProvidedCustomerNotFoundException.class)
+    public final ResponseEntity<Object> handleProvidedCustomerNotFound() {
+        ExceptionResource exceptionResponse = new ExceptionResource("CUS-GET-NFD-001", "Provided Customer Not Found");
+        return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
+    }
 }

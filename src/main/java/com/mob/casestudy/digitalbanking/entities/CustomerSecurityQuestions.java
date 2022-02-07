@@ -18,7 +18,7 @@ public class CustomerSecurityQuestions {
     private CustomerSecurityQuestionsId  customerSecurityQuestionsId;
     private String securityQuestionAnswer;
     private LocalDateTime createdOn;
-    @OneToOne
+    @OneToOne(cascade= CascadeType.REMOVE)
     @MapsId("customerId")
     private Customer customer;
 
